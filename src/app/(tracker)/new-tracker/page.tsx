@@ -1,5 +1,10 @@
+import { Page } from "@/components/page";
 import { NewTracker } from "@/features/tracker/components/new-tracker";
 
 export default function NewTrackerPage() {
-  return <NewTracker />;
+  return (
+    <Page back>
+      <NewTracker />
+    </Page>
+  );
 }

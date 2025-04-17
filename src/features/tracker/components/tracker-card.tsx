@@ -13,9 +13,25 @@ import Close from "@/components/icon/close";
 interface TrackerCardProps extends HabitTracker {
   className?: string;
   currentDate: Date;
+  onTouchStart?: () => void;
+  onTouchEnd?: () => void;
+  onTouchMove?: () => void;
+  onTouchCancel?: () => void;
 }
 
-export const TrackerCard = ({ id, description, repeat, target, completedDays, className, currentDate }: TrackerCardProps) => {
+export const TrackerCard = ({
+  id,
+  description,
+  repeat,
+  target,
+  completedDays,
+  className,
+  currentDate,
+  onTouchStart,
+  onTouchEnd,
+  onTouchMove,
+  onTouchCancel,
+}: TrackerCardProps) => {
   const { logRepeat } = useTrackerStore();
   const dateKey = getDateKey(currentDate);
   const todayStatus = completedDays[dateKey];
@@ -38,7 +54,10 @@ export const TrackerCard = ({ id, description, repeat, target, completedDays, cl
   if (isManuallyDone) {
     return (
       <div
-        onClick={addOneRepeat}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+        onTouchCancel={onTouchCancel}
         className={cn(
           "relative flex flex-col gap-2 px-4 py-3 rounded-xl shadow bg-white cursor-pointer overflow-hidden",
           className
@@ -46,7 +65,7 @@ export const TrackerCard = ({ id, description, repeat, target, completedDays, cl
       >
         <div className="z-10 flex items-center justify-between gap-1">
           <div>
-            <h3 className="text-lg">{description}</h3>
+            <h3 className="text-lg capitalize">{description}</h3>
           </div>
           <div className="text-[1.75rem] leading-[1.75rem] font-semibold text-end text-nowrap max-[320px]:text-wrap">{`100% done`}</div>
         </div>
@@ -60,6 +79,10 @@ export const TrackerCard = ({ id, description, repeat, target, completedDays, cl
   if (isManuallyNotDone) {
     return (
       <div
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+        onTouchCancel={onTouchCancel}
         className={cn(
           "flex items-center justify-between gap-1 px-4 py-3 rounded-xl shadow bg-[#DADADA] cursor-pointer",
           className
@@ -77,6 +100,10 @@ export const TrackerCard = ({ id, description, repeat, target, completedDays, cl
   if (isSkipped) {
     return (
       <div
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+        onTouchCancel={onTouchCancel}
         className={cn(
           "flex items-center justify-between gap-1 px-4 py-3 rounded-xl shadow bg-[#DADADA] opacity-50 cursor-pointer",
           className
@@ -97,7 +124,10 @@ export const TrackerCard = ({ id, description, repeat, target, completedDays, cl
 
     return (
       <div
-        onClick={addOneRepeat}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+        onTouchCancel={onTouchCancel}
         className={cn(
           "relative flex flex-col gap-2 px-4 py-3 rounded-xl shadow bg-white cursor-pointer overflow-hidden",
           className
@@ -113,7 +143,10 @@ export const TrackerCard = ({ id, description, repeat, target, completedDays, cl
           )}% done`}</div>
         </div>
 
-        <div className="absolute top-0 left-0 h-full w-[0%] bg-[#FFD427] z-0 transition-all" style={{ width: `${progress}%` }} />
+        <div
+          className="absolute top-0 left-0 h-full w-[0%] bg-[#FFD427] z-0 transition-all"
+          style={{ width: `${progress}%` }}
+        />
       </div>
     );
   }
@@ -122,7 +155,14 @@ export const TrackerCard = ({ id, description, repeat, target, completedDays, cl
   return (
     <div
       onClick={addOneRepeat}
-      className={cn("flex items-center justify-between gap-1 px-4 py-3 rounded-xl shadow bg-white cursor-pointer", className)}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      onTouchMove={onTouchMove}
+      onTouchCancel={onTouchCancel}
+      className={cn(
+        "flex items-center justify-between gap-1 px-4 py-3 rounded-xl shadow bg-white cursor-pointer",
+        className
+      )}
     >
       <div>
         <h3 className="text-lg">{description}</h3>

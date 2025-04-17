@@ -17,7 +17,7 @@ import { formatDayMonth } from "../lib/date";
 import { HabitTracker } from "../schemas";
 
 export const TrackersCalendar = () => {
-  const router = useRouter()
+  const router = useRouter();
   const tracker = useTrackerStore((state) => state.trackers);
 
   const [dataTracker, setDataTracker] = useState<HabitTracker[] | null>();
@@ -57,13 +57,15 @@ export const TrackersCalendar = () => {
     <div className="flex flex-col justify-between gap-4 h-full">
       <ul className="space-y-4">
         {dataTracker && dataTracker.length ? (
-          dataTracker.map((el) => (
-            <li key={el.id}>
-              <ContextOrHoldTrigger id={el.id} currentDate={selectedDate}>
-                <TrackerCard currentDate={selectedDate} {...el} />
-              </ContextOrHoldTrigger>
-            </li>
-          ))
+          dataTracker
+            .filter((el) => el.weekday.includes((selectedDate.getDay() + 6) % 7))
+            .map((el) => (
+              <li key={el.id}>
+                <ContextOrHoldTrigger id={el.id} currentDate={selectedDate}>
+                  <TrackerCard currentDate={selectedDate} {...el} />
+                </ContextOrHoldTrigger>
+              </li>
+            ))
         ) : (
           <div className="text-center text-lg font-bold">Not active trackers</div>
         )}
@@ -74,18 +76,26 @@ export const TrackersCalendar = () => {
           <button onClick={goToPreviousDay}>
             <Row />
           </button>
-          <p className="text-[1.75rem] font-semibold">{formatDayMonth(selectedDate)}</p>
+          <p className="text-[1.75rem] font-semibold leading-[1.75rem] text-center">{formatDayMonth(selectedDate)}</p>
           <button disabled={isToday} className={cn(isToday && "text-foreground/50")} onClick={goToNextDay}>
             <Row className="rotate-180" />
           </button>
         </div>
 
         <div className="flex items-center gap-4">
-          <Button onClick={() => router.push('/new-tracker')} className="flex flex-col gap-1 items-center justify-between bg-[#4378ff19] rounded-xl h-max w-max">
+          <Button
+            variant="clear"
+            onClick={() => router.push("/new-tracker")}
+            className="flex flex-col gap-1 items-center justify-between bg-[#4378ff19] hover:bg-[#4378ff3a] rounded-xl h-max w-max"
+          >
             <Add className="shrink-0 size-6" />
             <p className="text-[#007AFF] font-semibold text-sm">Add new</p>
           </Button>
-          <Button className="flex flex-col gap-1 items-center justify-between bg-[#4378ff19] rounded-xl h-max w-max">
+          <Button
+            variant="clear"
+            onClick={() => router.push("/progress")}
+            className="flex flex-col gap-1 items-center justify-between bg-[#4378ff19] hover:bg-[#4378ff3a] rounded-xl h-max w-max"
+          >
             <Progress className="shrink-0 size-6" />
             <p className="text-[#007AFF] font-semibold text-sm">Add new</p>
           </Button>

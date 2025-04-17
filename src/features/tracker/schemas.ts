@@ -39,8 +39,8 @@ export const weekDays = [
 export const targetsCompliance = [
   { label: "1 week", value: 7 },
   { label: "2 weeks", value: 14 },
-  { label: "1 month", value: 29 },
-  { label: "3 months", value: 87 },
-  { label: "6 months", value: 183 },
+  { label: "1 month", value: 30 },
+  { label: "3 months", value: 90 },
+  { label: "6 months", value: 180 },
   { label: "1 year", value: 365 },
 ];

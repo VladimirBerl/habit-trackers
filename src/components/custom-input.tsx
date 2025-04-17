@@ -1,17 +1,12 @@
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 
-interface AutoWidthInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface AutoWidthInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   disabledWidth?: boolean;
 }
 
-export function AutoWidthInput({
-  className,
-  disabledWidth = false,
-  ...props
-}: AutoWidthInputProps) {
+export function AutoWidthInput({ className, disabledWidth = false, ...props }: AutoWidthInputProps) {
   const onChangeWidthInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!disabledWidth) {
       const width = typeof window !== "undefined" ? window.innerWidth : 0;
@@ -34,8 +29,8 @@ export function AutoWidthInput({
         className
       )}
       autoComplete="off"
-      {...props}
       onKeyDown={(e) => onChangeWidthInput(e)}
+      {...props}
     />
   );
 }

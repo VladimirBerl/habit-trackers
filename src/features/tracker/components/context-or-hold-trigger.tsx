@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { cloneElement, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useTrackerStore } from "@/store/useTrackerStore";
@@ -18,7 +18,7 @@ import Edit from "@/components/icon/edit";
 import Delete from "@/components/icon/delete";
 
 type ContextOrHoldTriggerProps = {
-  children: React.ReactNode;
+  children: React.ReactElement;
   id: string;
   currentDate: Date;
 };
@@ -33,10 +33,8 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
   const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   const longPressProps = useLongPress({
-    onLongPress: () => {
-      setOpen(true);
-    },
-    delay: 1500,
+    onLongPress: () => setOpen(true),
+    delay: 800,
   });
 
   if (lp.tgWebAppPlatform === "tdesktop") {
@@ -47,10 +45,7 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
           <ContextMenuItem onClick={() => completedDay(id, currentDate)} className="flex gap-4 items-center text-[1.063rem]">
             <Completed className="size-7" /> <p>Completed</p>
           </ContextMenuItem>
-          <ContextMenuItem
-            onClick={() => markStatus(id, currentDate, "not_done")}
-            className="flex gap-4 items-center text-[1.063rem]"
-          >
+          <ContextMenuItem onClick={() => markStatus(id, currentDate, "not_done")} className="flex gap-4 items-center text-[1.063rem]">
             <NotCompleted className="size-7" />
             <p>Not Completed</p>
           </ContextMenuItem>
@@ -62,10 +57,7 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
             <Skip className="size-7" />
             <p>Skip</p>
           </ContextMenuItem>
-          <ContextMenuItem
-            onClick={() => router.push(`/change-tracker/${id}`)}
-            className="flex gap-4 items-center text-[1.063rem]"
-          >
+          <ContextMenuItem onClick={() => router.push(`/change-tracker/${id}`)} className="flex gap-4 items-center text-[1.063rem]">
             <Edit className="size-7" />
             <p>Edit</p>
           </ContextMenuItem>
@@ -80,35 +72,33 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
-      <DropdownMenuTrigger ref={triggerRef} {...longPressProps} className="cursor-pointer" asChild>
-        {children}
+      <DropdownMenuTrigger ref={triggerRef} asChild>
+        {cloneElement(children, longPressProps)}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem className="flex gap-4 items-center text-[1.063rem]">
-            <Completed className="size-7" /> <p>Completed</p>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="flex gap-4 items-center text-[1.063rem]">
-            <NotCompleted className="size-7" />
-            <p>Not Completed</p>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="flex gap-4 items-center text-[1.063rem]">
-            <Cancel className="size-7" />
-            <p>Cancel</p>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="flex gap-4 items-center text-[1.063rem]">
-            <Skip className="size-7" />
-            <p>Skip</p>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="flex gap-4 items-center text-[1.063rem]">
-            <Edit className="size-7" />
-            <p>Edit</p>
-          </DropdownMenuItem>
-          <DropdownMenuItem className="flex gap-4 items-center text-[1.063rem]">
-            <Delete className="size-7" />
-            <p className="text-[#DF2C2C]">Delete</p>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
+        <DropdownMenuItem onClick={() => completedDay(id, currentDate)} className="flex gap-4 items-center text-[1.063rem]">
+          <Completed className="size-7" /> <p>Completed</p>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => markStatus(id, currentDate, "not_done")} className="flex gap-4 items-center text-[1.063rem]">
+          <NotCompleted className="size-7" />
+          <p>Not Completed</p>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => undoChanges(id, currentDate)} className="flex gap-4 items-center text-[1.063rem]">
+          <Cancel className="size-7" />
+          <p>Cancel</p>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => skipDay(id, currentDate)} className="flex gap-4 items-center text-[1.063rem]">
+          <Skip className="size-7" />
+          <p>Skip</p>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => router.push(`/change-tracker/${id}`)} className="flex gap-4 items-center text-[1.063rem]">
+          <Edit className="size-7" />
+          <p>Edit</p>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => removeTracker(id)} className="flex gap-4 items-center text-[1.063rem]">
+          <Delete className="size-7" />
+          <p className="text-[#DF2C2C]">Delete</p>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

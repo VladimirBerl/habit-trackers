@@ -75,6 +75,7 @@ export const NewTracker = () => {
                       type="number"
                       inputMode="decimal"
                       {...field}
+                      onChange={(e) => field.onChange(Number(e.target.value))}
                     />
                   </FormControl>
                   <FormLabel className="text-[2.125rem] font-bold leading-[2.125rem] uppercase w-full">Per day</FormLabel>
@@ -85,26 +86,30 @@ export const NewTracker = () => {
           <FormField
             control={form.control}
             name="weekday"
-            render={({ field }) => (
-              <FormItem>
-                <div className="flex flex-wrap gap-2 justify-between my-8 px-2.5">
-                  {weekDays.map((day) => {
-                    const isChecked = field.value?.includes(day.value);
-                    const toggle = () => {
-                      const newValue = isChecked ? field.value.filter((v) => v !== day.value) : [...field.value, day.value];
-                      field.onChange(newValue);
-                    };
-                    return (
-                      <div key={day.value} className="flex flex-col items-center gap-1 cursor-pointer">
-                        <p className="text-sm font-medium">{day.label}</p>
-                        <Checkbox checked={isChecked} onCheckedChange={toggle} className="rounded-full" />
-                      </div>
-                    );
-                  })}
-                </div>
-              </FormItem>
-            )}
+            render={({ field }) => {
+              const value = field.value ?? []; // гарантируем массив
+              return (
+                <FormItem>
+                  <div className="flex flex-wrap gap-2 justify-between my-8 px-2.5">
+                    {weekDays.map((day) => {
+                      const isChecked = value.includes(day.value);
+                      const toggle = () => {
+                        const newValue = isChecked ? value.filter((v) => v !== day.value) : [...value, day.value];
+                        field.onChange(newValue);
+                      };
+                      return (
+                        <div key={day.value} className="flex flex-col items-center gap-1 cursor-pointer">
+                          <p className="text-sm font-medium">{day.label}</p>
+                          <Checkbox checked={isChecked} onCheckedChange={toggle} className="rounded-full" />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </FormItem>
+              );
+            }}
           />
+
           <FormField
             control={form.control}
             name="target"
@@ -113,7 +118,7 @@ export const NewTracker = () => {
                 <div className="flex flex-wrap gap-2">
                   <FormLabel className="text-[2.125rem] font-bold leading-[2.125rem] uppercase w-max">My goal</FormLabel>
                   <FormControl>
-                    <Select value={field.value.toString()} onValueChange={(value) => field.onChange(value)}>
+                    <Select value={field.value.toString()} onValueChange={(value) => field.onChange(Number(value))}>
                       <SelectTrigger className="p-0 underline leading-[2.125rem] uppercase border-none rounded-none shadow-none min-h-8 font-bold text-[2.125rem] text-primary">
                         <SelectValue placeholder="1 MONTH" />
                       </SelectTrigger>
