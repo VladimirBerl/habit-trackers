@@ -3,13 +3,24 @@
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 import { cn } from "@/lib/utils";
 
 function Select({
+  onValueChange,
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Root>) {
-  return <SelectPrimitive.Root data-slot="select" {...props} />;
+  const handleChange = (value: string) => {
+    if (hapticFeedback.isSupported()) {
+      hapticFeedback.impactOccurred("medium");
+    }
+    onValueChange?.(value);
+  };
+
+  return (
+    <SelectPrimitive.Root data-slot="select" onValueChange={handleChange} {...props} />
+  );
 }
 
 function SelectGroup({

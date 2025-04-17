@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 import { splitText } from "@/lib/split-text";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,6 +24,10 @@ export const Quiz = () => {
   const handleSelect = (option: number) => {
     if (selected) return;
 
+    if (hapticFeedback.isSupported()) {
+      hapticFeedback.impactOccurred("medium");
+    }
+
     setSelected(option);
     setAnswers((prev) => [...prev, option]);
 
@@ -42,6 +47,7 @@ export const Quiz = () => {
   const onSubmitAnwers = (finalAnswers: number[]) => {
     console.log(finalAnswers);
     router.push("/new-tracker");
+    localStorage.setItem("quiz-answers", JSON.stringify(finalAnswers));
   };
 
   if (!start) {
@@ -55,23 +61,14 @@ export const Quiz = () => {
             <span className="text-primary">
               working
               <br />
-              on yourself<span className="text-black">?</span>
+              on yourself<span className="text-foreground">?</span>
             </span>
           </h1>
 
-          <Image
-            className="mx-auto"
-            src="/images/duck-champion.png"
-            width={200}
-            height={200}
-            alt="duck-champion"
-          />
+          <Image className="mx-auto" src="/images/duck-champion.png" width={200} height={200} alt="duck-champion" />
         </div>
 
-        <Button
-          onClick={() => setStart(true)}
-          className="font-bold text-lg h-12"
-        >
+        <Button onClick={() => setStart(true)} className="font-bold text-lg h-12">
           Let&apos;s Go!
         </Button>
       </Page>
@@ -81,16 +78,8 @@ export const Quiz = () => {
   return (
     <Page back={false} className="flex flex-col justify-between gap-4 h-full">
       <div className="space-y-4">
-        <Image
-          className="mx-auto"
-          src="/images/duck-mapping.png"
-          width={200}
-          height={200}
-          alt="duck-mapping"
-        />
-        <h2 className="text-3xl font-semibold text-center">
-          {splitText(questions[currentStep].question)}
-        </h2>
+        <Image className="mx-auto" src="/images/duck-mapping.png" width={200} height={200} alt="duck-mapping" />
+        <h2 className="text-3xl font-semibold text-center">{splitText(questions[currentStep].question)}</h2>
       </div>
 
       <div className="space-y-8">
@@ -98,11 +87,7 @@ export const Quiz = () => {
           {questions[currentStep].options.map((option, i) => {
             const id = i + 1;
             return (
-              <li
-                key={i}
-                onClick={() => handleSelect(id)}
-                className="flex items-center gap-2.5 p-2.5 cursor-pointer"
-              >
+              <li key={i} onClick={() => handleSelect(id)} className="flex items-center gap-2.5 p-2.5 cursor-pointer">
                 <Checkbox checked={selected === id} />
                 {option}
               </li>

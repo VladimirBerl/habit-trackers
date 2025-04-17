@@ -73,13 +73,13 @@ export const TrackersCalendar = () => {
       </ul>
       <div className="absolute bottom-0 left-0 right-0 p-5 pt-1 bg-background flex gap-1 justify-between">
         <div className="flex justify-between items-center">
-          <button onClick={goToPreviousDay}>
-            <Row />
-          </button>
-          <p className="text-[1.75rem] font-semibold leading-[1.75rem] text-center">{formatDayMonth(selectedDate)}</p>
-          <button disabled={isToday} className={cn(isToday && "text-foreground/50")} onClick={goToNextDay}>
-            <Row className="rotate-180" />
-          </button>
+          <Button className="p-0!" variant="clear" onClick={goToPreviousDay}>
+            <Row className="size-8!"/>
+          </Button>
+          <p className="text-[1.75rem] font-semibold leading-[1.75rem] text-center min-w-[110px] max-[399px]:min-w-max max-[399px]:break-all">{formatDayMonth(selectedDate)}</p>
+          <Button variant="clear" disabled={isToday} className={cn("p-0!", isToday && "text-foreground/50")} onClick={goToNextDay}>
+            <Row className="rotate-180 size-8!" />
+          </Button>
         </div>
 
         <div className="flex items-center gap-4">
