@@ -55,7 +55,7 @@ export const ChangeTracker = ({ id }: ChangeTrackerProps) => {
   }
 
   return (
-    <Page back>
+    <Page back className="h-full">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col justify-between gap-4 h-full">
           <Image className="mx-auto" src="/images/duck-stay.png" width={200} height={200} alt="duck-stay" />

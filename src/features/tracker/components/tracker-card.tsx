@@ -1,6 +1,6 @@
 "use client";
 
-import { hapticFeedback } from "@telegram-apps/sdk-react";
+// import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 import { useTrackerStore } from "@/store/useTrackerStore";
 import { cn } from "@/lib/utils";
@@ -45,9 +45,9 @@ export const TrackerCard = ({
 
   const addOneRepeat = () => {
     logRepeat(id, currentDate);
-    if (hapticFeedback.isSupported()) {
-      hapticFeedback.impactOccurred("medium");
-    }
+    // if (hapticFeedback.isSupported()) {
+    //   hapticFeedback.impactOccurred("medium");
+    // }
   };
 
   // 🔵 Принудительно выполнен

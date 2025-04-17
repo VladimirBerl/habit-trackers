@@ -11,6 +11,7 @@ export const useLongPress = ({ onLongPress, delay = 1500, vibrate = true }: Long
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const start = useCallback(() => {
+    alert("start");
     timerRef.current = setTimeout(() => {
       if (vibrate && hapticFeedback.isSupported()) {
         hapticFeedback.impactOccurred("medium");
@@ -20,6 +21,7 @@ export const useLongPress = ({ onLongPress, delay = 1500, vibrate = true }: Long
   }, [onLongPress, delay, vibrate]);
 
   const clear = useCallback(() => {
+    alert("clear");
     if (timerRef.current) clearTimeout(timerRef.current);
   }, []);
 

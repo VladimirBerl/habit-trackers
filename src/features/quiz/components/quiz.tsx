@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress";
 import { questions } from "../moki";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Page } from "@/components/page";
 
 export const Quiz = () => {
   const router = useRouter();
@@ -45,7 +46,7 @@ export const Quiz = () => {
 
   if (!start) {
     return (
-      <div className="flex flex-col justify-between gap-4 h-full">
+      <Page back={false} className="flex flex-col justify-between gap-4 h-full">
         <div className="space-y-5">
           <h1 className="text-[2.625rem] font-bold uppercase leading-[52px]">
             Are you ready <br />
@@ -73,12 +74,12 @@ export const Quiz = () => {
         >
           Let&apos;s Go!
         </Button>
-      </div>
+      </Page>
     );
   }
 
   return (
-    <div className="flex flex-col justify-between gap-4 h-full">
+    <Page back={false} className="flex flex-col justify-between gap-4 h-full">
       <div className="space-y-4">
         <Image
           className="mx-auto"
@@ -115,6 +116,6 @@ export const Quiz = () => {
           ))}
         </div>
       </div>
-    </div>
+    </Page>
   );
 };

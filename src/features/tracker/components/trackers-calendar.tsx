@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 
 import { formatDayMonth } from "../lib/date";
 import { HabitTracker } from "../schemas";
+import { Page } from "@/components/page";
 
 export const TrackersCalendar = () => {
   const router = useRouter();
@@ -54,7 +55,7 @@ export const TrackersCalendar = () => {
   })();
 
   return (
-    <div className="flex flex-col justify-between gap-4 h-full">
+    <Page back={false} className="flex flex-col justify-between gap-4 h-full">
       <ul className="space-y-4">
         {dataTracker && dataTracker.length ? (
           dataTracker
@@ -101,6 +102,6 @@ export const TrackersCalendar = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </Page>
   );
 };
