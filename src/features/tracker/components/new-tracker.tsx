@@ -100,7 +100,7 @@ export const NewTracker = () => {
                       return (
                         <div key={day.value} className="flex flex-col items-center gap-1 cursor-pointer">
                           <p className="text-sm font-medium">{day.label}</p>
-                          <Checkbox checked={isChecked} onCheckedChange={toggle} className="rounded-full bg-transparent!" />
+                          <Checkbox checked={isChecked} onCheckedChange={toggle} className="rounded-full bg-primary! dark:bg-transparent! dark:border-primary!" />
                         </div>
                       );
                     })}

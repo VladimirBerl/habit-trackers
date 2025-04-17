@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(miniApp.isDark() && "dark")}>
+    <html lang="en" className={cn(!miniApp.isDark() && "dark")}>
       <body className={`${inter.variable} antialiased min-h-screen`}>
         <div className="overflow-y-auto h-full p-5! pt-14! touch-manipulation">
           <QueryProviders>
