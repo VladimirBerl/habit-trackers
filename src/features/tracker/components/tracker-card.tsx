@@ -1,6 +1,6 @@
 "use client";
 
-// import { hapticFeedback } from "@telegram-apps/sdk-react";
+import { hapticFeedback } from "@telegram-apps/sdk-react";
 
 import { useTrackerStore } from "@/store/useTrackerStore";
 import { cn } from "@/lib/utils";
@@ -45,9 +45,9 @@ export const TrackerCard = ({
 
   const addOneRepeat = () => {
     logRepeat(id, currentDate);
-    // if (hapticFeedback.isSupported()) {
-    //   hapticFeedback.impactOccurred("medium");
-    // }
+    if (hapticFeedback.isSupported()) {
+      hapticFeedback.impactOccurred("medium");
+    }
   };
 
   // 🔵 Принудительно выполнен
@@ -135,7 +135,7 @@ export const TrackerCard = ({
       >
         <div className="z-10 flex items-center justify-between gap-1">
           <div>
-            <h3 className="text-lg">{description}</h3>
+            <h3 className="text-lg break-all">{description}</h3>
             <p className="text-foreground/40">{`${daysLeft} days left`}</p>
           </div>
           <div className="text-[1.75rem] leading-[1.75rem] font-semibold text-end text-nowrap max-[320px]:text-wrap">{`${progress.toFixed(

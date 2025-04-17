@@ -11,7 +11,6 @@ import { IS_DEV } from "@/config";
 import { LoadingPage } from "@/components/loading-page";
 
 export const Root = ({ children }: PropsWithChildren) => {
-
   if (IS_DEV) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useTelegramMock();

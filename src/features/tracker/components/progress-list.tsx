@@ -40,7 +40,7 @@ export const ProgressList = () => {
         </p>
 
         <Select value={range.toString()} onValueChange={(value) => setRange(Number(value))}>
-          <SelectTrigger className="w-max border-none shadow-none ml-auto gap-1 p-0 font-medium text-base">
+          <SelectTrigger className="w-max bg-transparent! border-none shadow-none ml-auto gap-1 p-0 font-medium text-base">
             <SelectValue className="font-medium" placeholder="Select a range" />
             <ChevronDown className="text-foreground" />
           </SelectTrigger>

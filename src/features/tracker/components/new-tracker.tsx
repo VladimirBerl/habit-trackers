@@ -56,7 +56,7 @@ export const NewTracker = () => {
               <FormItem className="space-y-0 gap-0 mb-2">
                 <FormLabel className="text-[2.125rem] font-bold leading-[2.125rem] uppercase">I want</FormLabel>
                 <FormControl>
-                  <AutoWidthInput disabledWidth={true} placeholder="TO DO SOMETHING" {...field} />
+                  <AutoWidthInput className="bg-transparent!" disabledWidth={true} placeholder="TO DO SOMETHING" {...field} />
                 </FormControl>
               </FormItem>
             )}
@@ -69,7 +69,7 @@ export const NewTracker = () => {
                 <div className="flex gap-1">
                   <FormControl>
                     <AutoWidthInput
-                      className="w-[2.5ch]"
+                      className="w-[2.5ch] bg-transparent!"
                       placeholder="12"
                       disabledWidth={true}
                       type="number"
@@ -100,7 +100,7 @@ export const NewTracker = () => {
                       return (
                         <div key={day.value} className="flex flex-col items-center gap-1 cursor-pointer">
                           <p className="text-sm font-medium">{day.label}</p>
-                          <Checkbox checked={isChecked} onCheckedChange={toggle} className="rounded-full" />
+                          <Checkbox checked={isChecked} onCheckedChange={toggle} className="rounded-full bg-transparent!" />
                         </div>
                       );
                     })}
@@ -119,7 +119,7 @@ export const NewTracker = () => {
                   <FormLabel className="text-[2.125rem] font-bold leading-[2.125rem] uppercase w-max">My goal</FormLabel>
                   <FormControl>
                     <Select value={field.value.toString()} onValueChange={(value) => field.onChange(Number(value))}>
-                      <SelectTrigger className="p-0 underline leading-[2.125rem] uppercase border-none rounded-none shadow-none min-h-8 font-bold text-[2.125rem] text-primary">
+                      <SelectTrigger className="p-0 bg-transparent! underline leading-[2.125rem] uppercase border-none rounded-none shadow-none min-h-8 font-bold text-[2.125rem] text-primary">
                         <SelectValue placeholder="1 MONTH" />
                       </SelectTrigger>
                       <SelectContent>
