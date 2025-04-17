@@ -56,7 +56,7 @@ export const TrackersCalendar = () => {
 
   return (
     <Page back={false} className="flex flex-col justify-between gap-4 h-full">
-      <ul className="space-y-4">
+      <ul className="space-y-4 pb-32">
         {dataTracker && dataTracker.length ? (
           dataTracker
             .filter((el) => el.weekday.includes((selectedDate.getDay() + 6) % 7))
@@ -71,8 +71,7 @@ export const TrackersCalendar = () => {
           <div className="text-center text-lg font-bold">Not active trackers</div>
         )}
       </ul>
-
-      <div className="flex gap-1 justify-between">
+      <div className="absolute bottom-0 left-0 right-0 p-5 pt-1 bg-background flex gap-1 justify-between">
         <div className="flex justify-between items-center">
           <button onClick={goToPreviousDay}>
             <Row />
