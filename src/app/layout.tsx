@@ -4,7 +4,6 @@ import "./globals.css";
 import { Root } from "@/components/root";
 import { QueryProviders } from "@/components/query-provider";
 
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -29,10 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased h-full p-5!`}>
-        <QueryProviders>
-          <Root>{children}</Root>
-        </QueryProviders>
+      <body className={`${inter.variable} antialiased min-h-screen`}>
+        <div className="overflow-y-auto h-full p-5! touch-manipulation">
+          <QueryProviders>
+            <Root>{children}</Root>
+          </QueryProviders>
+        </div>
       </body>
     </html>
   );

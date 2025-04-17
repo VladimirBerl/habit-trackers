@@ -123,11 +123,14 @@
 
 html,
 body {
-  height: 100%;
+  touch-action: none;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 body {
+  height: 100vh;
   font-family: var(--font-inter), sans-serif;
   user-select: none;
-  margin-top: var(--tg-viewport-content-safe-area-inset-top);
+  padding-top: var(--tg-content-safe-area-inset-top);
 }
