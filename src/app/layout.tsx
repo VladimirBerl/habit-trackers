@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Root } from "@/components/root";
 import { QueryProviders } from "@/components/query-provider";
-import { Viewport } from "@/components/viewport";
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,9 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} antialiased h-full p-5!`}>
         <QueryProviders>
-          <Root>
-            <Viewport>{children}</Viewport>
-          </Root>
+          <Root>{children}</Root>
         </QueryProviders>
       </body>
     </html>
