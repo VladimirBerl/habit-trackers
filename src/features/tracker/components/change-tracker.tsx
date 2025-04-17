@@ -113,7 +113,7 @@ export const ChangeTracker = ({ id }: ChangeTrackerProps) => {
                         return (
                           <div key={day.value} className="flex flex-col items-center gap-1 cursor-pointer">
                             <p className="text-sm font-medium">{day.label}</p>
-                            <Checkbox checked={isChecked} onCheckedChange={toggle} className="rounded-full bg-primary! dark:bg-transparent! dark:border-primary!" />
+                            <Checkbox checked={isChecked} onCheckedChange={toggle} className="rounded-full dark:bg-transparent! dark:border-primary!" />
                           </div>
                         );
                       })}
@@ -156,7 +156,7 @@ export const ChangeTracker = ({ id }: ChangeTrackerProps) => {
             />
           </div>
           <Button className="font-bold text-lg h-12" type="submit">
-            Submit
+            Update a habbit
           </Button>
         </form>
       </Form>
