@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased min-h-screen`}>
-        <div className="overflow-y-auto h-full p-5! touch-manipulation">
+        <div className="overflow-y-auto h-full p-5! pt-7! touch-manipulation">
           <QueryProviders>
             <Root>{children}</Root>
           </QueryProviders>
