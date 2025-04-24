@@ -80,7 +80,7 @@ export const TrackersCalendar = () => {
           </div>
         )}
       </ul>
-      <div className="absolute bottom-0 left-0 right-0 p-5 pt-1 bg-background flex gap-1 justify-between">
+      <div className="absolute bottom-0 left-0 right-0 p-5 pb-12 pt-1 bg-background flex gap-1 justify-between">
         <div className="flex justify-between items-center">
           <Button className="p-0!" variant="clear" onClick={goToPreviousDay}>
             <Row className="size-8!" />
