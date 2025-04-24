@@ -17,7 +17,7 @@ export default function TrackersCalendarPage() {
   }, [router, trackers]);
 
   return (
-    <div className="h-full pt-16!">
+    <div className="h-full pt-12!">
       <TrackersCalendar />
     </div>
   );

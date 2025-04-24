@@ -128,7 +128,7 @@ export const NewTracker = () => {
                       };
                       return (
                         <div
-                          key={day.value}
+                          key={day.label}
                           className="flex flex-col items-center gap-1 cursor-pointer"
                         >
                           <p className="text-sm font-medium">{day.label}</p>
@@ -168,7 +168,7 @@ export const NewTracker = () => {
                           {targetsCompliance.map((el, i, a) => {
                             return (
                               <>
-                                <SelectItem key={i} value={el.value.toString()}>
+                                <SelectItem key={el.value} value={el.value.toString()}>
                                   {el.label}
                                 </SelectItem>
                                 {i !== a.length - 1 && <Separator />}

@@ -17,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   const setLocaleTelegram = useCallback(async () => {
+    alert(user?.language_code)
     if (user?.language_code) {
       await setLocale(user.language_code);
     } else {
@@ -34,7 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     setLocaleTelegram();
-  }, [setLocaleTelegram, user]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
