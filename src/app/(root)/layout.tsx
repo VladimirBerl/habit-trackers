@@ -17,7 +17,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   const setLocaleTelegram = useCallback(async () => {
-    alert(user?.language_code)
     if (user?.language_code) {
       await setLocale(user.language_code);
     } else {

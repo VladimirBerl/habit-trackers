@@ -65,7 +65,7 @@ export const ProgressList = () => {
           </SelectContent>
         </Select>
       </div>
-      <ul className="space-y-4">
+      <ul className="space-y-4 pb-32">
         {trackers.length > 0 ? (
           allTrackers.map((tracker) => (
             <li key={tracker.id}>

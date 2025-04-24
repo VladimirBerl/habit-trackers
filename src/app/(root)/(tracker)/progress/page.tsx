@@ -16,7 +16,7 @@ export default function ProgressPage() {
     }, [router, trackers]);
 
   return (
-    <Page back className="py-12!">
+    <Page back className="pt-12!">
       <ProgressList />
     </Page>
   );

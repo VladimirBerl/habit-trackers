@@ -9,9 +9,7 @@ export default function TrackersCalendarPage() {
   const trackers = localStorage.getItem("quiz-answers");
 
   useEffect(() => {
-    if (trackers) {
-      router.push("/trackers-calendar");
-    } else {
+    if (!trackers) {
       router.push("/quiz");
     }
   }, [router, trackers]);
