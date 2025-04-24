@@ -135,5 +135,5 @@ body {
   height: 100vh;
   font-family: var(--font-inter), sans-serif;
   user-select: none;
-  padding-top: var(--tg-viewport-content-safe-area-inset-top);
+  padding-top: var(--tg-viewport-content-safe-area-inset-top) !important;
 }

@@ -53,7 +53,7 @@ export const Quiz = () => {
   if (!start) {
     return (
       <Page back={false} className="flex flex-col justify-between gap-4 h-full">
-        <div className="space-y-5">
+        <div className="space-y-16">
           <h1 className="text-[2.625rem] font-bold uppercase leading-[52px]">
             Are you ready <br />
             to start
@@ -65,7 +65,7 @@ export const Quiz = () => {
             </span>
           </h1>
 
-          <Image className="mx-auto" src="/images/duck-champion.png" width={200} height={200} alt="duck-champion" />
+          <Image className="mx-auto" src="/images/duck-champion.png" width={256} height={256} alt="duck-champion" />
         </div>
 
         <Button onClick={() => setStart(true)} className="font-bold text-lg h-12">
@@ -78,7 +78,7 @@ export const Quiz = () => {
   return (
     <Page back={false} className="flex flex-col justify-between gap-4 h-full">
       <div className="space-y-4">
-        <Image className="mx-auto" src="/images/duck-mapping.png" width={200} height={200} alt="duck-mapping" />
+        <Image className="mx-auto" src="/images/duck-mapping.png" width={256} height={256} alt="duck-mapping" />
         <h2 className="text-3xl font-semibold text-center">{splitText(questions[currentStep].question)}</h2>
       </div>
 

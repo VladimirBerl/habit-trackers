@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import { formatDayMonth } from "../lib/date";
 import { HabitTracker } from "../schemas";
 import { Page } from "@/components/page";
+import Image from "next/image";
 
 export const TrackersCalendar = () => {
   const router = useRouter();
@@ -68,16 +69,28 @@ export const TrackersCalendar = () => {
               </li>
             ))
         ) : (
-          <div className="text-center text-lg font-bold">Not active trackers</div>
+          <div className="flex flex-col h-full gap-2 items-center">
+            <Image priority src="/images/duck-flying.png" width={256} height={256} alt="loading" />
+            <div className="text-center text-base font-medium">
+              Your habits will be here. <br /> Click “Add new” to add a new one
+            </div>
+          </div>
         )}
       </ul>
       <div className="absolute bottom-0 left-0 right-0 p-5 pt-1 bg-background flex gap-1 justify-between">
         <div className="flex justify-between items-center">
           <Button className="p-0!" variant="clear" onClick={goToPreviousDay}>
-            <Row className="size-8!"/>
+            <Row className="size-8!" />
           </Button>
-          <p className="text-[1.75rem] font-semibold leading-[1.75rem] text-center min-w-[110px] max-[399px]:min-w-max max-[399px]:break-all">{formatDayMonth(selectedDate)}</p>
-          <Button variant="clear" disabled={isToday} className={cn("p-0!", isToday && "text-foreground/50")} onClick={goToNextDay}>
+          <p className="text-[1.75rem] font-semibold leading-[1.75rem] text-center min-w-[110px] max-[399px]:min-w-max max-[399px]:break-all">
+            {formatDayMonth(selectedDate)}
+          </p>
+          <Button
+            variant="clear"
+            disabled={isToday}
+            className={cn("p-0!", isToday && "text-foreground/50")}
+            onClick={goToNextDay}
+          >
             <Row className="rotate-180 size-8!" />
           </Button>
         </div>

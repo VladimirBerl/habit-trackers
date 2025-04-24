@@ -3,6 +3,7 @@
 import { backButton } from "@telegram-apps/sdk-react";
 import { PropsWithChildren, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export const Page = ({
   className,
@@ -34,5 +35,5 @@ export const Page = ({
     }
   }, [router]);
 
-  return <section className={className}>{children}</section>;
+  return <section className={cn("h-full", className)}>{children}</section>;
 };

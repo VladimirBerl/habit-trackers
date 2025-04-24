@@ -12,6 +12,7 @@ import Edit from "@/components/icon/edit";
 import Delete from "@/components/icon/delete";
 
 import { hapticFeedback } from "@telegram-apps/sdk-react"; // импорт вибрации
+import { Separator } from "@/components/ui/separator";
 
 type ContextOrHoldTriggerProps = {
   children: React.ReactElement;
@@ -30,9 +31,9 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
   };
 
   return (
-    <ContextMenu onOpenChange={() => vibrate()}>
+    <ContextMenu modal onOpenChange={() => vibrate()}>
       <ContextMenuTrigger className="cursor-pointer">{children}</ContextMenuTrigger>
-      <ContextMenuContent>
+      <ContextMenuContent >
         <ContextMenuItem
           onClick={() => {
             vibrate();
@@ -42,6 +43,7 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
         >
           <Completed className="size-7" /> <p>Completed</p>
         </ContextMenuItem>
+        <Separator />
         <ContextMenuItem
           onClick={() => {
             vibrate();
@@ -52,6 +54,7 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
           <NotCompleted className="size-7" />
           <p>Not Completed</p>
         </ContextMenuItem>
+        <Separator />
         <ContextMenuItem
           onClick={() => {
             vibrate();
@@ -62,6 +65,7 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
           <Cancel className="size-7" />
           <p>Cancel</p>
         </ContextMenuItem>
+        <Separator />
         <ContextMenuItem
           onClick={() => {
             vibrate();
@@ -72,6 +76,7 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
           <Skip className="size-7" />
           <p>Skip</p>
         </ContextMenuItem>
+        <Separator />
         <ContextMenuItem
           onClick={() => {
             vibrate();
@@ -82,6 +87,7 @@ export const ContextOrHoldTrigger = ({ children, id, currentDate }: ContextOrHol
           <Edit className="size-7" />
           <p>Edit</p>
         </ContextMenuItem>
+        <Separator />
         <ContextMenuItem
           onClick={() => {
             vibrate();

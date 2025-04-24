@@ -16,7 +16,7 @@ export default function ProgressPage() {
     }, [router, trackers]);
 
   return (
-    <Page back>
+    <Page back className="pt-16!">
       <ProgressList />
     </Page>
   );

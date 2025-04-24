@@ -47,7 +47,7 @@ export const NewTracker = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col justify-between gap-4 h-full">
-        <Image className="mx-auto" src="/images/duck-stay.png" width={200} height={200} alt="duck-stay" />
+        <Image priority className="mx-auto" src="/images/duck-stay.png" width={256} height={256} alt="duck-stay" />
         <div>
           <FormField
             control={form.control}
