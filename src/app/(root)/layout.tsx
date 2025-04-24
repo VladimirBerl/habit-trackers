@@ -1,25 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import * as TelegramSDK from "@telegram-apps/sdk-react";
+import { useCallback, useEffect, useState } from "react";
+import { initData, useSignal, viewport, miniApp } from "@telegram-apps/sdk-react";
+import { setLocale } from "@/core/i18n/locale";
+import { localesMap } from "@/core/i18n/config";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useState(false);
+  const user = useSignal(initData.user);
 
   const fullscreen = async () => {
-    if (TelegramSDK.viewport.requestFullscreen.isAvailable()) {
-      await TelegramSDK.viewport.requestFullscreen();
-      TelegramSDK.viewport.isFullscreen();
+    if (viewport.requestFullscreen.isAvailable()) {
+      await viewport.requestFullscreen();
+      viewport.isFullscreen();
     }
   };
 
+  const setLocaleTelegram = useCallback(async () => {
+    if (user?.language_code) {
+      await setLocale(user.language_code);
+    } else {
+      await setLocale(localesMap[0].key);
+    }
+  }, [user]);
+
   useEffect(() => {
-    if (TelegramSDK) {
-      TelegramSDK.miniApp.ready();
+    if (miniApp) {
+      miniApp.ready();
       fullscreen();
-      setIsDark(TelegramSDK.miniApp.isDark());
+      setIsDark(miniApp.isDark());
     }
   }, []);
+
+  useEffect(() => {
+    setLocaleTelegram();
+  }, [setLocaleTelegram, user]);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);

@@ -7,6 +7,8 @@ export default function Home() {
   const router = useRouter();
   const trackers = localStorage.getItem("quiz-answers");
 
+  
+
   useEffect(() => {
     if (trackers) {
       router.push("/trackers-calendar");

@@ -4,11 +4,19 @@ import { useEffect, useState } from "react";
 import { useTrackerStore } from "@/store/useTrackerStore";
 import { format, subDays } from "date-fns";
 
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { TrackerProgress } from "./progress-trackers";
 
 import { targetsCompliance, HabitTracker } from "../schemas";
 import { ChevronDown } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export const ProgressList = () => {
   const today = new Date();
@@ -20,7 +28,8 @@ export const ProgressList = () => {
   const fromDate = subDays(today, range - 1);
   const toDate = today;
 
-  const sameMonth = fromDate.getMonth() === toDate.getMonth() && fromDate.getFullYear() === toDate.getFullYear();
+  const sameMonth =
+    fromDate.getMonth() === toDate.getMonth() && fromDate.getFullYear() === toDate.getFullYear();
 
   const formattedRange = sameMonth
     ? `${format(fromDate, "dd")} - ${format(toDate, "dd MMM")}`
@@ -35,9 +44,7 @@ export const ProgressList = () => {
       <h3 className="uppercase font-bold text-[2.125rem] mb-5">Progress</h3>
 
       <div className="flex items-center justify-between gap-1 mb-8">
-        <p className="font-medium">
-          {formattedRange}
-        </p>
+        <p className="font-medium">{formattedRange}</p>
 
         <Select value={range.toString()} onValueChange={(value) => setRange(Number(value))}>
           <SelectTrigger className="w-max bg-transparent! border-none shadow-none ml-auto gap-1 p-0 font-medium text-base">
@@ -46,16 +53,19 @@ export const ProgressList = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              {targetsCompliance.map((r) => (
-                <SelectItem key={r.value} value={r.value.toString()}>
-                  {r.label}
-                </SelectItem>
+              {targetsCompliance.map((r, i, a) => (
+                <>
+                  <SelectItem key={r.value} value={r.value.toString()}>
+                    {r.label}
+                  </SelectItem>
+                  {i !== a.length - 1 && <Separator />}
+                </>
               ))}
             </SelectGroup>
           </SelectContent>
         </Select>
       </div>
-      <ul className="space-y-4">
+      <ul className="space-y-4 mb-12">
         {trackers.length > 0 ? (
           allTrackers.map((tracker) => (
             <li key={tracker.id}>

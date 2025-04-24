@@ -17,8 +17,11 @@ import { formatDayMonth } from "../lib/date";
 import { HabitTracker } from "../schemas";
 import { Page } from "@/components/page";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const TrackersCalendar = () => {
+  const t = useTranslations('i18n');
+
   const router = useRouter();
   const tracker = useTrackerStore((state) => state.trackers);
 
@@ -102,7 +105,7 @@ export const TrackersCalendar = () => {
             className="flex flex-col gap-1 items-center justify-between bg-[#4378ff19] hover:bg-[#4378ff3a] rounded-xl h-max w-max"
           >
             <Add className="shrink-0 size-6" />
-            <p className="text-[#007AFF] font-semibold text-sm">Add new</p>
+            <p className="text-[#007AFF] font-semibold text-sm">{t("addNew")}</p>
           </Button>
           <Button
             variant="clear"
@@ -110,7 +113,7 @@ export const TrackersCalendar = () => {
             className="flex flex-col gap-1 items-center justify-between bg-[#4378ff19] hover:bg-[#4378ff3a] rounded-xl h-max w-max"
           >
             <Progress className="shrink-0 size-6" />
-            <p className="text-[#007AFF] font-semibold text-sm">Add new</p>
+            <p className="text-[#007AFF] font-semibold text-sm">{t("progress")}</p>
           </Button>
         </div>
       </div>

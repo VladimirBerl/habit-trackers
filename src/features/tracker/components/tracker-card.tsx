@@ -84,7 +84,7 @@ export const TrackerCard = ({
         onTouchMove={onTouchMove}
         onTouchCancel={onTouchCancel}
         className={cn(
-          "flex items-center justify-between gap-1 px-4 py-3 rounded-xl shadow bg-[#DADADA] cursor-pointer",
+          "flex items-center justify-between gap-1 px-4 py-3 rounded-xl shadow bg-[#DADADA] dark:bg-[#3B3B3B] cursor-pointer",
           className
         )}
       >
@@ -113,7 +113,9 @@ export const TrackerCard = ({
           <h3 className="text-lg">{description}</h3>
           <p className="text-foreground/40">Today&apos;s left</p>
         </div>
-        <div className="text-[1.75rem] leading-[1.75rem] font-semibold">{repeat - (todayStatus?.count ?? 0)}</div>
+        <div className="text-[1.75rem] leading-[1.75rem] font-semibold">
+          {repeat - (todayStatus?.count ?? 0)}
+        </div>
       </div>
     );
   }
@@ -168,7 +170,9 @@ export const TrackerCard = ({
         <h3 className="text-lg">{description}</h3>
         <p className="text-foreground/40">Today&apos;s left</p>
       </div>
-      <div className="text-[1.75rem] leading-[1.75rem] font-semibold">{repeat - (todayStatus?.count ?? 0)}</div>
+      <div className="text-[1.75rem] leading-[1.75rem] font-semibold">
+        {repeat - (todayStatus?.count ?? 0)}
+      </div>
     </div>
   );
 };
