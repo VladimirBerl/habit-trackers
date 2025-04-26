@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }, [user]);
 
   useEffect(() => {
-    if (miniApp) {
+    if (miniApp.isMounted()) {
       miniApp.ready();
       fullscreen();
       setIsDark(miniApp.isDark());
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     setLocaleTelegram();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
